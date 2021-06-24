@@ -11,7 +11,6 @@ public class PyramidFactory extends ShapeFactory{
 
     private static int ID = 0;
 
-
     @Override
     public RightPyramid create(double[] params) {
         int i, j;

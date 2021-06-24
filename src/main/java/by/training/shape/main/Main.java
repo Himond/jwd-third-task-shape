@@ -19,9 +19,11 @@ public class Main {
         List<double[]> parser = PyramidParser.parsePyramid(stringArrayList);
         parser.stream().forEach(pyramid -> System.out.println(Arrays.toString(pyramid)));
 
+
         PyramidFactory factory = new PyramidFactory();
         List<RightPyramid> pyramids = factory.create(parser);
         System.out.println(pyramids);
+
 
 
     }
