@@ -20,7 +20,6 @@ public class RightPyramidValidator {
         if(square){
             double diagonal = Math.sqrt(2) * a;
             Point o = new Point(pyramid.getHeight().getX(), pyramid.getHeight().getY(), 0);
-            System.out.println(Math.abs(lengthSide(pyramid.getA(), o) - diagonal / 2) < 0.001);
             if (Math.abs(lengthSide(pyramid.getA(), o) - diagonal / 2) > 0.001){
                 valid = false;
             }
