@@ -1,26 +1,26 @@
 package by.training.shape.service.impl;
 
-import by.training.shape.entity.RightPyramid;
+import by.training.shape.entity.Point;
+import by.training.shape.entity.Pyramid;
 import by.training.shape.service.PyramidService;
 import by.training.shape.validator.RightPyramidValidator;
 
 
 public class RightPyramidServiceImpl implements PyramidService {
 
-
     @Override
-    public double area(RightPyramid pyramid) {
+    public double area(Pyramid pyramid) {
         double fullArea = 0;
         if (RightPyramidValidator.isRightPyramid(pyramid)){
             double a = baseSideLength(pyramid);
             double b = triangleSideLength(pyramid);
-            fullArea = Math.pow(a, 2) + 2 * a * Math.sqrt(Math.pow(b, 2) - Math.pow(a, 2)/4);
+            fullArea = Math.pow(a, 2) + 2 * a * Math.sqrt(Math.pow(b, 2) - Math.pow(a, 2) / 4);
         }
         return fullArea;
     }
 
     @Override
-    public double volume(RightPyramid pyramid) {
+    public double volume(Pyramid pyramid) {
         double volume = 0;
         if (RightPyramidValidator.isRightPyramid(pyramid)) {
             volume = heightPyramid(pyramid) * Math.pow(baseSideLength(pyramid), 2) / 3;
@@ -28,69 +28,41 @@ public class RightPyramidServiceImpl implements PyramidService {
         return volume;
     }
 
-
-    public double truncatedArea(double planeCuttingHeight, RightPyramid pyramid) {
-        double cutPyramidArea = 0;
+    public void cutPyramid(Pyramid pyramid, double heightCut) {
         if (RightPyramidValidator.isRightPyramid(pyramid)){
-            double k = similarityCoefficientK(planeCuttingHeight, pyramid);
-            double cutSideSquare = baseSideLength(pyramid) * k;
-            double apofem = Math.sqrt(Math.pow((baseSideLength(pyramid) - cutSideSquare) / 2, 2) + Math.pow(heightPyramid(pyramid) - planeCuttingHeight, 2));
-            double perimeterBase = baseSideLength(pyramid) * 4;
-            double perimeterCutBase = cutSideSquare * 4;
-
-            double sideSurfaceArea = (perimeterBase + perimeterCutBase) * apofem / 2;
-            double baseSquareArea = Math.pow(baseSideLength(pyramid), 2);
-            double baseCutSquareArea = Math.pow(cutSideSquare, 2);
-
-            cutPyramidArea = sideSurfaceArea + baseSquareArea + baseCutSquareArea;
+            double heightPyramid = heightPyramid(pyramid);
+            if (Double.compare(heightCut, heightPyramid) < 0 && Double.compare(heightCut, 0.0) > 0){
+                pyramid.setA(pointRecalculate(pyramid.getA(), pyramid.getH(), heightCut));
+                pyramid.setB(pointRecalculate(pyramid.getB(), pyramid.getH(), heightCut));
+                pyramid.setC(pointRecalculate(pyramid.getC(), pyramid.getH(), heightCut));
+                pyramid.setD(pointRecalculate(pyramid.getD(), pyramid.getH(), heightCut));
+            }
         }
-
-        return cutPyramidArea;
     }
 
-    public double truncatedVolume(double planeCuttingHeight, RightPyramid pyramid) {
-        double cutPyramidVolume = 0;
-
-        if (RightPyramidValidator.isRightPyramid(pyramid)){
-            double k = similarityCoefficientK(planeCuttingHeight, pyramid);
-            double cutSideSquare = baseSideLength(pyramid) * k;
-
-            double heightCut = heightPyramid(pyramid) - planeCuttingHeight;
-            double baseSquareArea = Math.pow(baseSideLength(pyramid), 2);
-            double baseCutSquareArea = Math.pow(cutSideSquare, 2);
-
-            cutPyramidVolume = heightCut / 3 *(baseSquareArea + Math.sqrt(baseSquareArea * baseCutSquareArea) +baseCutSquareArea);
-        }
-
-        return cutPyramidVolume;
+    private Point pointRecalculate(Point a, Point b, double z){
+        double newZ = (z - a.getZ()) / (b.getZ() - a.getZ());
+        double newX = newZ * (b.getX() - a.getX()) + a.getX();
+        double newY = newZ * (b.getY() - a.getY()) + a.getY();
+        return new Point(newX, newY, z);
     }
 
-
-
-    public double similarityCoefficientK(double planeCuttingHeight, RightPyramid pyramid){
-        double k;
-        double height = heightPyramid(pyramid);
-        k = planeCuttingHeight / height;
-        return k;
-    }
-
-
-    public double baseSideLength(RightPyramid pyramid){
+    public double baseSideLength(Pyramid pyramid){
         double result;
         result = Math.sqrt(Math.pow(pyramid.getB().getX() - pyramid.getA().getX(), 2) + Math.pow(pyramid.getB().getY() - pyramid.getA().getY(), 2)
                 + Math.pow(pyramid.getB().getY() - pyramid.getA().getY(), 2));
         return result;
     }
 
-    public double triangleSideLength(RightPyramid pyramid){
+    public double triangleSideLength(Pyramid pyramid){
         double result;
-        result = Math.sqrt(Math.pow(pyramid.getHeight().getX() - pyramid.getA().getX(), 2) + Math.pow(pyramid.getHeight().getY() - pyramid.getA().getY(), 2)
-                + Math.pow(pyramid.getHeight().getZ() - pyramid.getA().getZ(), 2));
+        result = Math.sqrt(Math.pow(pyramid.getH().getX() - pyramid.getA().getX(), 2) + Math.pow(pyramid.getH().getY() - pyramid.getA().getY(), 2)
+                + Math.pow(pyramid.getH().getZ() - pyramid.getA().getZ(), 2));
         return result;
     }
 
 
-    public double heightPyramid(RightPyramid pyramid){
+    public double heightPyramid(Pyramid pyramid){
         double result;
         double halfDiag = Math.sqrt(2) * baseSideLength(pyramid) / 2;
         result = Math.sqrt(Math.pow(triangleSideLength(pyramid), 2) - Math.pow(halfDiag, 2));

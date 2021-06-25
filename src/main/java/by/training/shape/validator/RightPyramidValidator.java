@@ -1,12 +1,12 @@
 package by.training.shape.validator;
 
 import by.training.shape.entity.Point;
-import by.training.shape.entity.RightPyramid;
+import by.training.shape.entity.Pyramid;
 
 public class RightPyramidValidator {
 
 
-    public static boolean isRightPyramid(RightPyramid pyramid){
+    public static boolean isRightPyramid(Pyramid pyramid){
         double a, b, c, d;
         boolean valid = true;
         boolean square;
@@ -19,7 +19,7 @@ public class RightPyramidValidator {
 
         if(square){
             double diagonal = Math.sqrt(2) * a;
-            Point o = new Point(pyramid.getHeight().getX(), pyramid.getHeight().getY(), 0);
+            Point o = new Point(pyramid.getH().getX(), pyramid.getH().getY(), pyramid.getA().getZ());
             if (Math.abs(lengthSide(pyramid.getA(), o) - diagonal / 2) > 0.001){
                 valid = false;
             }

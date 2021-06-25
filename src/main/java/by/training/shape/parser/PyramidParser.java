@@ -2,8 +2,9 @@ package by.training.shape.parser;
 
 import by.training.shape.validator.PyramidParamsValidator;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PyramidParser {
 
@@ -11,19 +12,16 @@ public class PyramidParser {
 
     public static List<double[]> parsePyramid(List<String> pyramids){
 
-        List<double[]> arrayPyramid = new ArrayList<>();
-        double[] paramsPyramid ;
+        List<double[]> arrayPyramid;
 
-        for (String pyramid : pyramids) {
-            if(PyramidParamsValidator.correctValuePyramid(pyramid)){
-                String[] line = pyramid.split(SPLIT_REGEX);
-                paramsPyramid = new double[line.length];
-                for (int j = 0; j < line.length; j++) {
-                    paramsPyramid[j] = Double.parseDouble(line[j]);
-                }
-                arrayPyramid.add(paramsPyramid);
-            }
-        }
+        arrayPyramid = pyramids.stream()
+                .filter(PyramidParamsValidator::correctValuePyramid)
+                .map(line -> line.split(SPLIT_REGEX))
+                .map(array -> Stream.of(array)
+                        .mapToDouble(Double::parseDouble)
+                        .toArray())
+                .collect(Collectors.toList());
+
 
         return arrayPyramid;
     }

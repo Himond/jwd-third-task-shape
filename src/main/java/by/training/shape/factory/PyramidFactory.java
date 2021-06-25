@@ -1,28 +1,26 @@
 package by.training.shape.factory;
 
 import by.training.shape.entity.Point;
-import by.training.shape.entity.RightPyramid;
-
+import by.training.shape.entity.Pyramid;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PyramidFactory extends ShapeFactory{
 
-    private static int ID = 0;
 
     @Override
-    public RightPyramid create(double[] params) {
+    public Pyramid create(double[] params) {
         int i, j;
         Point[] points = new Point[5];
         for (i = 0, j = 0; i <= params.length - 3; i += 3, j++){
             points[j] = new Point(params[i], params[i + 1], params[i + 2]);
         }
-        return new RightPyramid(getID(), points);
+        return new Pyramid(points);
     }
 
-    public List<RightPyramid> create(List<double[]> params) {
-        List<RightPyramid> pyramids = new ArrayList<>();
+    public List<Pyramid> create(List<double[]> params) {
+        List<Pyramid> pyramids = new ArrayList<>();
 
         for (double[] pyramid: params){
             pyramids.add(create(pyramid));
@@ -32,10 +30,5 @@ public class PyramidFactory extends ShapeFactory{
     }
 
 
-    private static synchronized int getID(){
-        int id = ID;
-        ID++;
-        return id;
-    }
 
 }

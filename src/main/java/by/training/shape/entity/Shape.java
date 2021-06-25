@@ -1,15 +1,11 @@
 package by.training.shape.entity;
 
-import java.util.Objects;
-
 public abstract class Shape {
 
     private int id;
-    private String name;
 
-    public Shape(int id, String name) {
+    public Shape(int id) {
         this.id = id;
-        this.name = name;
     }
 
     public int getId() {
@@ -20,32 +16,26 @@ public abstract class Shape {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shape shape = (Shape) o;
-        return id == shape.id && Objects.equals(name, shape.name);
+        return id == shape.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Shape{");
         sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
     }

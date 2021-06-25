@@ -1,26 +1,27 @@
 package by.training.shape.entity;
 
 
-public class RightPyramid extends Shape{
+import by.training.shape.util.IdGenerator;
+
+public class Pyramid extends Shape{
 
     private Point a;
     private Point b;
     private Point c;
     private Point d;
-    private Point height;
+    private Point h;
 
-
-    public RightPyramid(int id) {
-        super(id, "RightPyramid");
+    public Pyramid() {
+        super(IdGenerator.generateId());
     }
 
-    public RightPyramid(int id, Point ... points) {
-        super(id, "RightPyramid");
+    public Pyramid(Point ... points) {
+        super(IdGenerator.generateId());
         this.a = points[0];
         this.b = points[1];
         this.c = points[2];
         this.d = points[3];
-        this.height = points[4];
+        this.h = points[4];
     }
 
     public Point getA() {
@@ -55,12 +56,12 @@ public class RightPyramid extends Shape{
         this.d = d;
     }
 
-    public Point getHeight() {
-        return height;
+    public Point getH() {
+        return h;
     }
 
-    public void setHeight(Point height) {
-        this.height = height;
+    public void setH(Point h) {
+        this.h = h;
     }
 
 
@@ -69,7 +70,7 @@ public class RightPyramid extends Shape{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        RightPyramid pyramid = (RightPyramid) o;
+        Pyramid pyramid = (Pyramid) o;
 
         if(a == null){
             if (pyramid.a != null){
@@ -99,11 +100,11 @@ public class RightPyramid extends Shape{
         }else if (!d.equals(pyramid.d)){
             return false;
         }
-        if(height == null){
-            if (pyramid.height != null){
+        if(h == null){
+            if (pyramid.h != null){
                 return false;
             }
-        }else if (!height.equals(pyramid.height)){
+        }else if (!h.equals(pyramid.h)){
             return false;
         }
         return true;
@@ -118,7 +119,7 @@ public class RightPyramid extends Shape{
         result = prime * result + ((b == null) ? 0: b.hashCode());
         result = prime * result + ((c == null) ? 0: c.hashCode());
         result = prime * result + ((d == null) ? 0: d.hashCode());
-        result = prime * result + ((height == null) ? 0: height.hashCode());
+        result = prime * result + ((h == null) ? 0: h.hashCode());
         return result;
     }
 
@@ -129,7 +130,7 @@ public class RightPyramid extends Shape{
         sb.append(", b=").append(b);
         sb.append(", c=").append(c);
         sb.append(", d=").append(d);
-        sb.append(", s=").append(height);
+        sb.append(", s=").append(h);
         sb.append('}');
         return sb.toString();
     }

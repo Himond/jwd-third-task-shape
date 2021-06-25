@@ -1,11 +1,12 @@
 package by.training.shape.main;
 
 
-import by.training.shape.entity.RightPyramid;
+import by.training.shape.entity.Pyramid;
 import by.training.shape.exception.ShapeException;
 import by.training.shape.factory.PyramidFactory;
 import by.training.shape.parser.PyramidParser;
 import by.training.shape.reader.impl.ReaderServiceImpl;
+import by.training.shape.service.impl.RightPyramidServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,9 +22,14 @@ public class Main {
 
 
         PyramidFactory factory = new PyramidFactory();
-        List<RightPyramid> pyramids = factory.create(parser);
+        List<Pyramid> pyramids = factory.create(parser);
+        Pyramid one = pyramids.get(0);
         System.out.println(pyramids);
 
+
+        RightPyramidServiceImpl service = new RightPyramidServiceImpl();
+        service.cutPyramid(one, 2.5);
+        System.out.println(one);
 
 
     }
