@@ -1,7 +1,7 @@
 package by.training.shape.comparator;
 
 import by.training.shape.entity.Pyramid;
-import by.training.shape.entity.Warehouse;
+import by.training.shape.entity.PyramidWarehouse;
 import by.training.shape.exception.ShapeException;
 
 import java.util.Comparator;
@@ -17,7 +17,7 @@ public enum PyramidComparator {
     AREA,
     VOLUME;
 
-    public Comparator<Pyramid> getComparator() throws ShapeException {
+    /*public Comparator<Pyramid> getComparator() throws ShapeException {
         return switch(this){
             case ID -> Comparator.comparingInt(Pyramid::getId);
 
@@ -43,7 +43,7 @@ public enum PyramidComparator {
 
             case AREA -> Comparator.comparingDouble((ToDoubleFunction<Pyramid>) pyramid -> {
                 try {
-                    return Warehouse.getInstance().get(pyramid.getId()).getSurfaceArea();
+                    return PyramidWarehouse.getInstance().getParametersByID(pyramid.getId()).getSurfaceArea();
                 } catch (ShapeException e) {
                     e.printStackTrace();
                 }
@@ -53,7 +53,7 @@ public enum PyramidComparator {
             case VOLUME ->
                     Comparator.comparingDouble((ToDoubleFunction<Pyramid>) pyramid -> {
                         try {
-                            return Warehouse.getInstance().get(pyramid.getId()).getVolume();
+                            return PyramidWarehouse.getInstance().getParametersByID(pyramid.getId()).getVolume();
                         } catch (ShapeException e) {
                             e.printStackTrace();
                         }
@@ -62,6 +62,6 @@ public enum PyramidComparator {
 
             default -> Comparator.comparingInt(Pyramid::getId);
         };
-    }
+    }*/
 
 }

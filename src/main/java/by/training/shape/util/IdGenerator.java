@@ -2,7 +2,7 @@ package by.training.shape.util;
 
 public class IdGenerator {
 
-    private static int id = 1;
+    private static int id = 0;
 
     private IdGenerator(){
     }

@@ -1,8 +1,8 @@
-package by.training.shape.factory;
+package by.training.shape.creator;
 
 import by.training.shape.entity.Shape;
 
-public abstract class ShapeFactory {
+public abstract class ShapeCreator {
 
     public abstract Shape create(double ... params);
 

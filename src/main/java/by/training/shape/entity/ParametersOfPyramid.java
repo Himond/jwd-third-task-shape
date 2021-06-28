@@ -1,11 +1,11 @@
 package by.training.shape.entity;
 
-public class PyramidParameter {
+public class ParametersOfPyramid {
 
     private double surfaceArea;
     private double volume;
 
-    public PyramidParameter(double surfaceArea, double volume) {
+    public ParametersOfPyramid(double surfaceArea, double volume) {
         this.surfaceArea = surfaceArea;
         this.volume = volume;
     }
@@ -30,7 +30,7 @@ public class PyramidParameter {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PyramidParameter that = (PyramidParameter) o;
+        ParametersOfPyramid that = (ParametersOfPyramid) o;
         return Double.compare(that.surfaceArea, surfaceArea) == 0 && Double.compare(that.volume, volume) == 0;
     }
 

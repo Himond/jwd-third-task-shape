@@ -22,7 +22,6 @@ public class PyramidParser {
                         .toArray())
                 .collect(Collectors.toList());
 
-
         return arrayPyramid;
     }
 

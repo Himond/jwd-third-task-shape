@@ -53,10 +53,8 @@ public class PyramidRepository {
         return pyramids.stream().filter(specification::specify).collect(Collectors.toList());
     }
 
-
     public List<Pyramid> sort(Comparator<? super Pyramid> comparator) {
-        List<Pyramid> pyramidsClone = new ArrayList<>();
-        Collections.copy(pyramidsClone, pyramids);
+        List<Pyramid> pyramidsClone = new ArrayList<>(pyramids);
         pyramidsClone.sort(comparator);
         return pyramidsClone;
     }

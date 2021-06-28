@@ -1,9 +1,16 @@
 package by.training.shape.entity;
 
 
+import by.training.shape.observer.Observer;
+import by.training.shape.observer.PyramidEvent;
+import by.training.shape.observer.PyramidObservable;
 import by.training.shape.util.IdGenerator;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Pyramid extends Shape{
+public class Pyramid extends Shape implements PyramidObservable {
+    private static Logger logger = LogManager.getLogger();
 
     private Point a;
     private Point b;
@@ -11,17 +18,19 @@ public class Pyramid extends Shape{
     private Point d;
     private Point h;
 
+    private Observer observer;
+
     public Pyramid() {
         super(IdGenerator.generateId());
     }
 
-    public Pyramid(Point ... points) {
+    public Pyramid(Point a, Point b, Point c, Point d, Point h) {
         super(IdGenerator.generateId());
-        this.a = points[0];
-        this.b = points[1];
-        this.c = points[2];
-        this.d = points[3];
-        this.h = points[4];
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        this.h = h;
     }
 
     public Point getA() {
@@ -62,6 +71,70 @@ public class Pyramid extends Shape{
 
     public void setH(Point h) {
         this.h = h;
+    }
+
+
+    @Override
+    public void attach(Observer observer) {
+        this.observer = observer;
+
+    }
+
+    @Override
+    public void detach() {
+        this.observer = null;
+    }
+
+    @Override
+    public void notifyObservers() {
+        if (observer != null){
+            PyramidEvent pyramidEvent = new PyramidEvent(this);
+            observer.changeParameters(pyramidEvent);
+        }else {
+            logger.log(Level.INFO, "Observer is null");
+        }
+    }
+
+
+    public static Pyramid.Builder newBuilder(){
+        return new Pyramid().new Builder();
+    }
+
+    public class Builder{
+
+        private Builder() {
+        }
+
+        public Pyramid.Builder setPointA(Point a){
+            Pyramid.this.a = a;
+            return this;
+        }
+
+        public Pyramid.Builder setPointB(Point b){
+            Pyramid.this.b = b;
+            return this;
+        }
+
+        public Pyramid.Builder setPointC(Point c){
+            Pyramid.this.c = c;
+            return this;
+        }
+
+        public Pyramid.Builder setPointD(Point d){
+            Pyramid.this.d = d;
+            return this;
+        }
+
+        public Pyramid.Builder setPointH(Point h){
+            Pyramid.this.h = h;
+            return this;
+        }
+
+
+        public Pyramid build(){
+            return Pyramid.this;
+        }
+
     }
 
 
@@ -126,12 +199,15 @@ public class Pyramid extends Shape{
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("RightPyramid{");
-        sb.append("a=").append(a);
+        sb.append("id=").append(this.getId());
+        sb.append(", a=").append(a);
         sb.append(", b=").append(b);
         sb.append(", c=").append(c);
         sb.append(", d=").append(d);
-        sb.append(", s=").append(h);
+        sb.append(", h=").append(h);
         sb.append('}');
         return sb.toString();
     }
+
+
 }

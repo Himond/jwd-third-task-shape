@@ -1,8 +1,8 @@
 package by.training.shape.observer.impl;
 
 import by.training.shape.entity.Pyramid;
-import by.training.shape.entity.PyramidParameter;
-import by.training.shape.entity.Warehouse;
+import by.training.shape.entity.ParametersOfPyramid;
+import by.training.shape.entity.PyramidWarehouse;
 import by.training.shape.observer.Observer;
 import by.training.shape.observer.PyramidEvent;
 import by.training.shape.service.impl.RightPyramidServiceImpl;
@@ -16,15 +16,15 @@ public class PyramidObserver implements Observer {
 
     @Override
     public void changeParameters(PyramidEvent event) {
-        var warehouse = Warehouse.getInstance();
+        var warehouse = PyramidWarehouse.getInstance();
         var service = new RightPyramidServiceImpl();
         Pyramid pyramid = event.getSource();
 
         double area = service.area(pyramid);
         double volume = service.volume(pyramid);
-        PyramidParameter parameter = new PyramidParameter(area, volume);
+        ParametersOfPyramid parameter = new ParametersOfPyramid(area, volume);
 
-        warehouse.put(pyramid.getId(), parameter);
+        warehouse.putParameters(pyramid.getId(), parameter);
 
         logger.log(Level.INFO, "Parameters for pyramid id " + pyramid.getId() + " updated");
 
