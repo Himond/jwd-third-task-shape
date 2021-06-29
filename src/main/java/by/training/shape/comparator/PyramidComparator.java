@@ -1,10 +1,12 @@
 package by.training.shape.comparator;
 
+import by.training.shape.entity.ParametersOfPyramid;
 import by.training.shape.entity.Pyramid;
 import by.training.shape.entity.PyramidWarehouse;
 import by.training.shape.exception.ShapeException;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.ToDoubleFunction;
 
 public enum PyramidComparator {
@@ -17,7 +19,7 @@ public enum PyramidComparator {
     AREA,
     VOLUME;
 
-    /*public Comparator<Pyramid> getComparator() throws ShapeException {
+    public Comparator<Pyramid> getComparator() throws ShapeException {
         return switch(this){
             case ID -> Comparator.comparingInt(Pyramid::getId);
 
@@ -42,26 +44,18 @@ public enum PyramidComparator {
                     .thenComparing(pyramid -> pyramid.getH().getZ());
 
             case AREA -> Comparator.comparingDouble((ToDoubleFunction<Pyramid>) pyramid -> {
-                try {
-                    return PyramidWarehouse.getInstance().getParametersByID(pyramid.getId()).getSurfaceArea();
-                } catch (ShapeException e) {
-                    e.printStackTrace();
-                }
-                return 0;
+                Optional<ParametersOfPyramid> optional = PyramidWarehouse.getInstance().getParametersByID(pyramid.getId());
+                return optional.map(ParametersOfPyramid::getSurfaceArea).orElse(0.0);
             });
 
             case VOLUME ->
                     Comparator.comparingDouble((ToDoubleFunction<Pyramid>) pyramid -> {
-                        try {
-                            return PyramidWarehouse.getInstance().getParametersByID(pyramid.getId()).getVolume();
-                        } catch (ShapeException e) {
-                            e.printStackTrace();
-                        }
-                        return 0;
+                        Optional<ParametersOfPyramid> optional = PyramidWarehouse.getInstance().getParametersByID(pyramid.getId());
+                        return optional.map(ParametersOfPyramid::getVolume).orElse(0.0);
                     });
 
-            default -> Comparator.comparingInt(Pyramid::getId);
+            default -> throw new ShapeException();
         };
-    }*/
+    }
 
 }

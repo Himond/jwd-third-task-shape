@@ -16,8 +16,8 @@ public class PyramidObserver implements Observer {
 
     @Override
     public void changeParameters(PyramidEvent event) {
-        var warehouse = PyramidWarehouse.getInstance();
-        var service = new RightPyramidServiceImpl();
+        PyramidWarehouse warehouse = PyramidWarehouse.getInstance();
+        RightPyramidServiceImpl service = new RightPyramidServiceImpl();
         Pyramid pyramid = event.getSource();
 
         double area = service.area(pyramid);

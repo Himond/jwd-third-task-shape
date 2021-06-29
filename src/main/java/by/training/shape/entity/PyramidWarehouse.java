@@ -1,9 +1,8 @@
 package by.training.shape.entity;
 
-import by.training.shape.exception.ShapeException;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
@@ -30,17 +29,22 @@ public class PyramidWarehouse {
         pyramidParametersMap.put(id, parameters);
     }
 
-    public ParametersOfPyramid remove(Integer id) {
-        return pyramidParametersMap.remove(id);
+    public Optional<ParametersOfPyramid> remove(Integer id) {
+        ParametersOfPyramid parameters = pyramidParametersMap.remove(id);
+        if (parameters != null){
+            return Optional.of(parameters);
+        }
+        logger.log(Level.ERROR, "No value by id: " + id);
+        return Optional.empty();
     }
 
-    public ParametersOfPyramid getParametersByID(Integer id) throws ShapeException {
+    public Optional<ParametersOfPyramid> getParametersByID(Integer id){
         ParametersOfPyramid parameters = pyramidParametersMap.get(id);
-        if (parameters == null){
-            logger.log(Level.ERROR, "No value by id: " + id);
-            throw new ShapeException("No value by id: " + id);
+        if (parameters != null){
+            return Optional.of(parameters);
         }
-        return pyramidParametersMap.get(id);
+        logger.log(Level.ERROR, "No value by id: " + id);
+        return Optional.empty();
     }
 
     public Map<Integer, ParametersOfPyramid> getPyramidMap(){

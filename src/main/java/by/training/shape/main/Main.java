@@ -16,7 +16,6 @@ import by.training.shape.repository.PyramidSpecification;
 import by.training.shape.repository.impl.AreaPyramidSpecification;
 import by.training.shape.service.impl.RightPyramidServiceImpl;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -59,7 +58,7 @@ public class Main {
 
 
         for (int i = 0; i < repository.size(); i++){
-            System.out.println(warehouse.getParametersByID(i + 1).toString());
+            System.out.println(warehouse.getParametersByID(i + 1).get());
         }
 
         PyramidSpecification specification = new AreaPyramidSpecification(30, 70);

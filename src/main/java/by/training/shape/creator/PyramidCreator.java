@@ -2,12 +2,16 @@ package by.training.shape.creator;
 
 import by.training.shape.entity.Point;
 import by.training.shape.entity.Pyramid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PyramidCreator extends ShapeCreator {
 
+    private static Logger logger = LogManager.getLogger();
 
     @Override
     public Pyramid create(double[] params) {
@@ -26,7 +30,10 @@ public class PyramidCreator extends ShapeCreator {
                 .setPointD(points[3])
                 .setPointH(points[4]);
 
-        return builder.build();
+        Pyramid pyramid = builder.build();
+        logger.log(Level.INFO, "Pyramid is created successfully: " + pyramid);
+
+        return pyramid;
     }
 
     public List<Pyramid> create(List<double[]> params) {
