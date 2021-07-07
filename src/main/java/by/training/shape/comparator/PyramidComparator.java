@@ -21,7 +21,7 @@ public enum PyramidComparator {
 
     public Comparator<Pyramid> getComparator() throws ShapeException {
         return switch(this){
-            case ID -> Comparator.comparingInt(Pyramid::getId);
+            case ID -> Comparator.comparingLong(Pyramid::getId);
 
             case POINT_A -> Comparator.comparingDouble((ToDoubleFunction<Pyramid>) pyramid -> pyramid.getA().getX())
                     .thenComparing(pyramid -> pyramid.getA().getY())

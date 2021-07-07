@@ -187,7 +187,7 @@ public class Pyramid extends Shape implements PyramidObservable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + getId();
+        result = prime * result + super.hashCode();
         result = prime * result + ((a == null) ? 0: a.hashCode());
         result = prime * result + ((b == null) ? 0: b.hashCode());
         result = prime * result + ((c == null) ? 0: c.hashCode());

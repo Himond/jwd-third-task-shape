@@ -2,17 +2,17 @@ package by.training.shape.entity;
 
 public abstract class Shape {
 
-    private int id;
+    private long id;
 
-    public Shape(int id) {
+    public Shape(long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -28,7 +28,7 @@ public abstract class Shape {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + (int)(id ^ (id >>> 32)) ;
         return result;
     }
 

@@ -12,10 +12,10 @@ public class PyramidWarehouse {
 
     private static Logger logger = LogManager.getLogger();
     private static PyramidWarehouse instance;
-    private Map<Integer, ParametersOfPyramid> pyramidParametersMap;
+    private Map<Long, ParametersOfPyramid> pyramidParametersMap;
 
     private PyramidWarehouse(){
-        this.pyramidParametersMap = new HashMap<>();
+        this.pyramidParametersMap = new HashMap<Long, ParametersOfPyramid>();
     }
 
     public static PyramidWarehouse getInstance(){
@@ -25,7 +25,7 @@ public class PyramidWarehouse {
         return instance;
     }
 
-    public void putParameters(Integer id, ParametersOfPyramid parameters){
+    public void putParameters(long id, ParametersOfPyramid parameters){
         pyramidParametersMap.put(id, parameters);
     }
 
@@ -38,7 +38,7 @@ public class PyramidWarehouse {
         return Optional.empty();
     }
 
-    public Optional<ParametersOfPyramid> getParametersByID(Integer id){
+    public Optional<ParametersOfPyramid> getParametersByID(long id){
         ParametersOfPyramid parameters = pyramidParametersMap.get(id);
         if (parameters != null){
             return Optional.of(parameters);
@@ -47,7 +47,7 @@ public class PyramidWarehouse {
         return Optional.empty();
     }
 
-    public Map<Integer, ParametersOfPyramid> getPyramidMap(){
+    public Map<Long, ParametersOfPyramid> getPyramidMap(){
         return Map.copyOf(pyramidParametersMap);
     }
 
