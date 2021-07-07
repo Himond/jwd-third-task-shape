@@ -2,3 +2,11 @@
 09:16:04.767 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 2 updated
 09:16:04.767 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 3 updated
 09:16:04.767 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 4 updated
+11:01:39.625 [main] INFO  by.training.shape.creator.PyramidCreator - Pyramid is created successfully: RightPyramid{id=1, a=Point{x=1.1, y=4.5, z=0.5}, b=Point{x=6.6, y=4.5, z=0.5}, c=Point{x=6.6, y=10.0, z=0.5}, d=Point{x=1.1, y=10.0, z=0.5}, h=Point{x=3.85, y=7.25, z=10.3}}
+11:01:39.628 [main] INFO  by.training.shape.creator.PyramidCreator - Pyramid is created successfully: RightPyramid{id=2, a=Point{x=2.2, y=2.7, z=3.1}, b=Point{x=5.3, y=2.7, z=3.1}, c=Point{x=5.3, y=5.8, z=3.1}, d=Point{x=2.2, y=5.8, z=3.1}, h=Point{x=3.75, y=4.25, z=7.1}}
+11:01:39.628 [main] INFO  by.training.shape.creator.PyramidCreator - Pyramid is created successfully: RightPyramid{id=3, a=Point{x=1.0, y=1.0, z=0.0}, b=Point{x=4.0, y=1.0, z=0.0}, c=Point{x=4.0, y=4.0, z=0.0}, d=Point{x=1.0, y=4.0, z=0.0}, h=Point{x=2.5, y=2.5, z=3.0}}
+11:01:39.628 [main] INFO  by.training.shape.creator.PyramidCreator - Pyramid is created successfully: RightPyramid{id=4, a=Point{x=4.0, y=0.0, z=1.2}, b=Point{x=8.0, y=0.0, z=1.2}, c=Point{x=8.0, y=4.0, z=1.2}, d=Point{x=4.0, y=4.0, z=1.2}, h=Point{x=6.0, y=2.0, z=6.5}}
+11:01:39.632 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 1 updated
+11:01:39.632 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 2 updated
+11:01:39.632 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 3 updated
+11:01:39.632 [main] INFO  by.training.shape.observer.impl.PyramidObserver - Parameters for pyramid id 4 updated

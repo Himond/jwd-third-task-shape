@@ -1,7 +1,7 @@
 package by.training.shape.main;
 
 
-import by.training.shape.comparator.PyramidVolumeComparator;
+import by.training.shape.comparator.PyramidComparator;
 import by.training.shape.entity.ParametersOfPyramid;
 import by.training.shape.entity.Pyramid;
 import by.training.shape.entity.PyramidWarehouse;
@@ -16,6 +16,7 @@ import by.training.shape.repository.PyramidSpecification;
 import by.training.shape.repository.impl.AreaPyramidSpecification;
 import by.training.shape.service.impl.RightPyramidServiceImpl;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -65,7 +66,8 @@ public class Main {
         List<Pyramid> pyramidList = repository.query(specification);
         System.out.println(pyramidList);
 
-        List<Pyramid> pyramidsSortVolume = repository.sort(new PyramidVolumeComparator());
+        Comparator<Pyramid> comparator = PyramidComparator.VOLUME.getComparator();
+        List<Pyramid> pyramidsSortVolume = repository.sort(comparator);
         System.out.println(pyramidsSortVolume);
 
     }
