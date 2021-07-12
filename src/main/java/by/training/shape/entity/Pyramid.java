@@ -39,6 +39,7 @@ public class Pyramid extends Shape implements PyramidObservable {
 
     public void setA(Point a) {
         this.a = a;
+        this.notifyObservers();
     }
 
     public Point getB() {
@@ -47,6 +48,7 @@ public class Pyramid extends Shape implements PyramidObservable {
 
     public void setB(Point b) {
         this.b = b;
+        this.notifyObservers();
     }
 
     public Point getC() {
@@ -55,6 +57,7 @@ public class Pyramid extends Shape implements PyramidObservable {
 
     public void setC(Point c) {
         this.c = c;
+        this.notifyObservers();
     }
 
     public Point getD() {
@@ -63,6 +66,7 @@ public class Pyramid extends Shape implements PyramidObservable {
 
     public void setD(Point d) {
         this.d = d;
+        this.notifyObservers();
     }
 
     public Point getH() {
@@ -71,6 +75,7 @@ public class Pyramid extends Shape implements PyramidObservable {
 
     public void setH(Point h) {
         this.h = h;
+        this.notifyObservers();
     }
 
 

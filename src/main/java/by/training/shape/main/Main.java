@@ -29,6 +29,8 @@ public class Main {
         Observer observer = new PyramidObserver();
         PyramidWarehouse warehouse = PyramidWarehouse.getInstance();
 
+
+
         List<String> stringArrayList = reader.read("src\\main\\resources\\pyramids.txt");
         List<double[]> parser = PyramidParser.parsePyramid(stringArrayList);
         List<Pyramid> pyramids = creator.create(parser);
