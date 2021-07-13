@@ -148,58 +148,29 @@ public class Pyramid extends Shape implements PyramidObservable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
+
         Pyramid pyramid = (Pyramid) o;
 
-        if(a == null){
-            if (pyramid.a != null){
-                return false;
-            }
-        }else if (!a.equals(pyramid.a)){
-            return false;
-        }
-        if(b == null){
-            if (pyramid.b != null){
-                return false;
-            }
-        }else if (!b.equals(pyramid.b)){
-            return false;
-        }
-        if(c == null){
-            if (pyramid.c != null){
-                return false;
-            }
-        }else if (!c.equals(pyramid.c)){
-            return false;
-        }
-        if(d == null){
-            if (pyramid.d != null){
-                return false;
-            }
-        }else if (!d.equals(pyramid.d)){
-            return false;
-        }
-        if(h == null){
-            if (pyramid.h != null){
-                return false;
-            }
-        }else if (!h.equals(pyramid.h)){
-            return false;
-        }
-        return true;
+        if (a != null ? !a.equals(pyramid.a) : pyramid.a != null) return false;
+        if (b != null ? !b.equals(pyramid.b) : pyramid.b != null) return false;
+        if (c != null ? !c.equals(pyramid.c) : pyramid.c != null) return false;
+        if (d != null ? !d.equals(pyramid.d) : pyramid.d != null) return false;
+        if (h != null ? !h.equals(pyramid.h) : pyramid.h != null) return false;
+        return observer != null ? observer.equals(pyramid.observer) : pyramid.observer == null;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + super.hashCode();
-        result = prime * result + ((a == null) ? 0: a.hashCode());
-        result = prime * result + ((b == null) ? 0: b.hashCode());
-        result = prime * result + ((c == null) ? 0: c.hashCode());
-        result = prime * result + ((d == null) ? 0: d.hashCode());
-        result = prime * result + ((h == null) ? 0: h.hashCode());
+        int result = super.hashCode();
+        result = 31 * result + (a != null ? a.hashCode() : 0);
+        result = 31 * result + (b != null ? b.hashCode() : 0);
+        result = 31 * result + (c != null ? c.hashCode() : 0);
+        result = 31 * result + (d != null ? d.hashCode() : 0);
+        result = 31 * result + (h != null ? h.hashCode() : 0);
+        result = 31 * result + (observer != null ? observer.hashCode() : 0);
         return result;
     }
+
 
     @Override
     public String toString() {
