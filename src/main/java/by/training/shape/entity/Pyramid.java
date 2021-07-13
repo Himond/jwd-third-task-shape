@@ -155,8 +155,7 @@ public class Pyramid extends Shape implements PyramidObservable {
         if (b != null ? !b.equals(pyramid.b) : pyramid.b != null) return false;
         if (c != null ? !c.equals(pyramid.c) : pyramid.c != null) return false;
         if (d != null ? !d.equals(pyramid.d) : pyramid.d != null) return false;
-        if (h != null ? !h.equals(pyramid.h) : pyramid.h != null) return false;
-        return observer != null ? observer.equals(pyramid.observer) : pyramid.observer == null;
+        return h != null ? h.equals(pyramid.h): pyramid.h == null;
     }
 
     @Override
@@ -167,7 +166,6 @@ public class Pyramid extends Shape implements PyramidObservable {
         result = 31 * result + (c != null ? c.hashCode() : 0);
         result = 31 * result + (d != null ? d.hashCode() : 0);
         result = 31 * result + (h != null ? h.hashCode() : 0);
-        result = 31 * result + (observer != null ? observer.hashCode() : 0);
         return result;
     }
 
